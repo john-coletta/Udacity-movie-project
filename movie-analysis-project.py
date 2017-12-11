@@ -96,6 +96,8 @@ plt.savefig('revenuehistogram.png')
 plt.show()
 plt.clf()
 #Making categories for revenue
+revenues = tmdf_final['revenue_adj'].describe()
+
 def successfnc(df):
     if df['revenue_adj'] < revenues[4]:
         return 'flop'
