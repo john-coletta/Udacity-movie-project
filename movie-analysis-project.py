@@ -202,3 +202,18 @@ for tick in ax.get_xticklabels():
 	
 plt.savfig('genrerating.png')
 plt.show()
+#Now revenue
+genre_revs = []
+for x in genre_labels:
+    genre_revs.append(genre_rev[x])
+    
+plt.figure(figsize=(20,6))    
+sns.set_style('whitegrid')
+ax = sns.stripplot(x=genre_labels2, y=genre_revs, color='b', size=7)
+ax.set(xlabel='Genre (Total Count)', ylabel='Average Revenue (Hudred Mil. Dollars)', title='Average Revenue by Genre')
+
+for tick in ax.get_xticklabels():
+    tick.set_rotation(45)
+	
+plt.savfig('genrerevenue.png')
+plt.show()
