@@ -102,3 +102,19 @@ def successfnc(df):
         return 'very successful'
     
 tmdf_final['success'] = tmdf_final.apply(successfnc, axis=1)
+
+#Now let's plot the average runtime for each category
+runtime_success = tmdf_final.groupby('success').mean()['runtime']
+labels1 = ['flop','below average','successful','very successful']
+runtimes = []
+for x in labels1:
+    runtimes.append(runtime_success[x])
+    
+plt.plot(runtimes, 'o')
+plt.ylabel('Runtime (Min)')
+plt.xlabel('Success')
+plt.title('Success vs Runtime')
+plt.xticks([0,1,2,3], labels1)
+plt.savfig('runtimesucces.png')
+plt.show()
+print(runtime_success)
