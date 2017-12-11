@@ -120,7 +120,16 @@ plt.savfig('runtimesucces.png')
 plt.show()
 print(runtime_success)
 
+#Boxplot of data
 ax = sns.boxplot(x='success', y='runtime', data=tmdf_final, order=['flop','below average','successful','very successful'])
 ax.set(xlabel='Success', ylabel='Runtime (Min)', title='Success vs Runtime');
 plt.savfig('runtimeboxplot.png')
+plt.show()
+
+#Scatter plot of runtime vs quality
+tmdf_final.plot.scatter('runtime','vote_average');
+plt.xlabel('Runtime (Min)')
+plt.ylabel('Average Vote Score')
+plt.title('Runtime vs Average Score');
+plt.savfig('runtimequalityscatter.png')
 plt.show()
