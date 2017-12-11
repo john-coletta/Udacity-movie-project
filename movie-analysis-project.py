@@ -78,3 +78,6 @@ plt.xticks([0,1,2,3], labels)
 plt.savfig('qualitybudget.png')
 plt.show()
 print(budget_quality)
+#Another plot
+ax = sns.stripplot(x='quality', y='budget_adj', data=tmdf_final, order=['poor','below average','good','great'], jitter=True)
+ax.set(xlabel='Quality', ylabel='Budget (Hundred Mil. Dollars)', title='Quality vs Budget');
