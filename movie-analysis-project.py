@@ -81,3 +81,11 @@ print(budget_quality)
 #Another plot
 ax = sns.stripplot(x='quality', y='budget_adj', data=tmdf_final, order=['poor','below average','good','great'], jitter=True)
 ax.set(xlabel='Quality', ylabel='Budget (Hundred Mil. Dollars)', title='Quality vs Budget');
+
+
+#Now let's look at movie length
+tmdf_final['revenue_adj'].hist();
+plt.title('Distribution of Adjusted Revenue')
+plt.xlabel('Adjusted Revenue')
+plt.ylabel('Count')
+plt.show()
