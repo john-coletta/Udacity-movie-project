@@ -144,3 +144,12 @@ print('The R value is {}, which is very low and shows that there is not a strong
 
 '''Finaly, let's look at genres'''
 tmdf_final['genres'] = tmdf_final['genres'].apply(lambda x: x.split('|'))
+
+#Generate a dictionary of all the genres
+genres = {}
+for index, row in tmdf_final.iterrows():
+    for x in row['genres']:
+        if x not in genres:
+            genres[x] = 1
+        else:
+            genres[x] += 1
