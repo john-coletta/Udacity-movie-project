@@ -46,3 +46,18 @@ plt.ylabel('Count');
 
 #Let's add the movie "quality designation". First let's figure out the relevant stats for user score
 tmdf_final['vote_average'].describe()
+
+#Now lets add 'quality' to the df. They will be 4 levels: poor, below_avg, good, great
+
+def qualityfnc(df):
+    if df['vote_average'] < 5.7:
+        return 'poor'
+    elif 5.7 <= df['vote_average'] < 6.2:
+        return 'below average'
+    elif 6.2<= df['vote_average'] < 6.7:
+        return 'good'
+    else:
+        return 'great'
+    
+tmdf_final['quality'] = tmdf_final.apply(qualityfnc, axis=1)
+print(tmdf_final.head())
