@@ -89,3 +89,16 @@ plt.title('Distribution of Adjusted Revenue')
 plt.xlabel('Adjusted Revenue')
 plt.ylabel('Count')
 plt.show()
+
+#Making categories for revenue
+def successfnc(df):
+    if df['revenue_adj'] < revenues[4]:
+        return 'flop'
+    elif revenues[4] <= df['revenue_adj'] < revenues[5]:
+        return 'below average'
+    elif revenues[5]<= df['revenue_adj'] < revenues[6]:
+        return 'successful'
+    else:
+        return 'very successful'
+    
+tmdf_final['success'] = tmdf_final.apply(successfnc, axis=1)
