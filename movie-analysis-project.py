@@ -61,3 +61,20 @@ def qualityfnc(df):
     
 tmdf_final['quality'] = tmdf_final.apply(qualityfnc, axis=1)
 print(tmdf_final.head())
+
+#Now let's make a box plot of the average budget for each category
+sns.set(style='white', palette='muted')
+budget_quality = tmdf_final.groupby('quality').mean()['budget_adj']
+labels = ['poor','below average','good','great']
+budgets = []
+for x in labels:
+    budgets.append(budget_quality[x])
+    
+plt.plot(budgets, 'o')
+plt.ylabel('Budget (Ten Mil. Dollars)')
+plt.xlabel('Quality')
+plt.title('Quality vs Budget')
+plt.xticks([0,1,2,3], labels)
+plt.savfig('qualitybudget.png')
+plt.show()
+print(budget_quality)
