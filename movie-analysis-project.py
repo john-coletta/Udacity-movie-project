@@ -153,3 +153,26 @@ for index, row in tmdf_final.iterrows():
             genres[x] = 1
         else:
             genres[x] += 1
+			
+#We are going to make dictionaries that have the genre as a key and the average rating and average revenue as values
+genre_rating = {}
+for index, row in tmdf_final.iterrows():
+    for x in row['genres']:
+        if x not in genre_rating:
+            genre_rating[x] = row['vote_average']
+        else:
+            genre_rating[x] += row['vote_average']
+            
+for g in genre_rating:
+    genre_rating[g] = genre_rating[g] / genres[g]
+    
+genre_rev = {}
+for index, row in tmdf_final.iterrows():
+    for x in row['genres']:
+        if x not in genre_rev:
+            genre_rev[x] = row['revenue_adj']
+        else:
+            genre_rev[x] += row['revenue_adj']
+            
+for g in genre_rev:
+    genre_rev[g] = genre_rev[g] / genres[g]
