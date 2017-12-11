@@ -42,7 +42,9 @@ tmdf_final.to_csv('tmdf_final.csv', index=False)
 tmdf_final['vote_average'].hist();
 plt.title('Distribution of User Ratings')
 plt.xlabel('Rating')
-plt.ylabel('Count');
+plt.ylabel('Count')
+plt.savefig('ratinghistorgram.png')
+plt.show()
 
 #Let's add the movie "quality designation". First let's figure out the relevant stats for user score
 tmdf_final['vote_average'].describe()
@@ -61,7 +63,7 @@ def qualityfnc(df):
     
 tmdf_final['quality'] = tmdf_final.apply(qualityfnc, axis=1)
 print(tmdf_final.head())
-
+plt.clf()
 #Now let's make a box plot of the average budget for each category
 sns.set(style='white', palette='muted')
 budget_quality = tmdf_final.groupby('quality').mean()['budget_adj']
@@ -75,22 +77,24 @@ plt.ylabel('Budget (Ten Mil. Dollars)')
 plt.xlabel('Quality')
 plt.title('Quality vs Budget')
 plt.xticks([0,1,2,3], labels)
-plt.savfig('qualitybudget.png')
+plt.savefig('qualitybudget.png')
 plt.show()
+plt.clf()
 print(budget_quality)
 #Another plot
 ax = sns.stripplot(x='quality', y='budget_adj', data=tmdf_final, order=['poor','below average','good','great'], jitter=True)
 ax.set(xlabel='Quality', ylabel='Budget (Hundred Mil. Dollars)', title='Quality vs Budget');
-plt.savfig('qualitybudgetboxplot.png')
+plt.savefig('qualitybudgetboxplot.png')
 plt.show()
-
-#Now let's look at movie length
+plt.clf()
+#Now let's look at revenue histogram
 tmdf_final['revenue_adj'].hist();
 plt.title('Distribution of Adjusted Revenue')
 plt.xlabel('Adjusted Revenue')
 plt.ylabel('Count')
+plt.savefig('revenuehistogram.png')
 plt.show()
-
+plt.clf()
 #Making categories for revenue
 def successfnc(df):
     if df['revenue_adj'] < revenues[4]:
@@ -116,8 +120,9 @@ plt.ylabel('Runtime (Min)')
 plt.xlabel('Success')
 plt.title('Success vs Runtime')
 plt.xticks([0,1,2,3], labels1)
-plt.savfig('runtimesucces.png')
+plt.savefig('runtimesucces.png')
 plt.show()
+plt.clf()
 print(runtime_success)
 
 #Boxplot of data
@@ -131,15 +136,17 @@ tmdf_final.plot.scatter('runtime','vote_average');
 plt.xlabel('Runtime (Min)')
 plt.ylabel('Average Vote Score')
 plt.title('Runtime vs Average Score');
-plt.savfig('runtimequalityscatter.png')
+plt.savefig('runtimequalityscatter.png')
 plt.show()
+plt.clf()
 
 #Make a line of best fit
 ax = sns.regplot(x='runtime',y='vote_average', data=tmdf_final)
 ax.set(xlabel='Runtime (Min)', ylabel='Average Vote Score', title='Runtime vs Average Score');
 
 slope, intercept, rvalue, pvalue, stderr = stats.linregress(tmdf_final['runtime'],tmdf_final['vote_average'])
-
+plt.show()
+plt.clf()
 print('The R value is {}, which is very low and shows that there is not a strong correlation \nbetween our two variables.'.format(rvalue))
 
 '''Finaly, let's look at genres'''
@@ -200,8 +207,9 @@ ax.set(xlabel='Genre (Total Count)', ylabel='Average Rating', title='Average Rat
 for tick in ax.get_xticklabels():
     tick.set_rotation(45)
 	
-plt.savfig('genrerating.png')
+plt.savefig('genrerating.png')
 plt.show()
+plt.clf()
 #Now revenue
 genre_revs = []
 for x in genre_labels:
@@ -215,5 +223,6 @@ ax.set(xlabel='Genre (Total Count)', ylabel='Average Revenue (Hudred Mil. Dollar
 for tick in ax.get_xticklabels():
     tick.set_rotation(45)
 	
-plt.savfig('genrerevenue.png')
+plt.savefig('genrerevenue.png')
 plt.show()
+plt.clf()
