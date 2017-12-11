@@ -141,3 +141,6 @@ ax.set(xlabel='Runtime (Min)', ylabel='Average Vote Score', title='Runtime vs Av
 slope, intercept, rvalue, pvalue, stderr = stats.linregress(tmdf_final['runtime'],tmdf_final['vote_average'])
 
 print('The R value is {}, which is very low and shows that there is not a strong correlation \nbetween our two variables.'.format(rvalue))
+
+'''Finaly, let's look at genres'''
+tmdf_final['genres'] = tmdf_final['genres'].apply(lambda x: x.split('|'))
