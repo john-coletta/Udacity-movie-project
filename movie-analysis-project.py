@@ -176,3 +176,29 @@ for index, row in tmdf_final.iterrows():
             
 for g in genre_rev:
     genre_rev[g] = genre_rev[g] / genres[g]
+	
+#making labels, a multi-step process
+genre_labels = []
+for key in genres:
+    genre_labels.append(key)
+    
+genre_ratings = []
+for x in genre_labels:
+    genre_ratings.append(genre_rating[x])
+
+genre_labels2 = list(genre_labels)
+for x in range(len(genre_labels2)):
+    genre_labels2[x] = genre_labels2[x] + ' ({})'.format(genres[genre_labels2[x]])
+    
+
+    
+plt.figure(figsize=(20,6))    
+sns.set_style('whitegrid')
+ax = sns.stripplot(x=genre_labels2, y=genre_ratings, color='b', size=7)
+ax.set(xlabel='Genre (Total Count)', ylabel='Average Rating', title='Average Rating by Genre')
+
+for tick in ax.get_xticklabels():
+    tick.set_rotation(45)
+	
+plt.savfig('genrerating.png')
+plt.show()
